@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){  
+                let answer="";
+                for(x of s){
+                    if(x.charCodeAt() <90){
+                        answer+=x.toLowerCase()
+                    }
+                    else answer+=x.toUpperCase()
+                }
+                return answer;
+            }
+            console.log(solution("StuDY"));
+        </script>
+    </body>
+</html>
