@@ -1,0 +1,39 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            /* /////////첫번째 방법/////////
+            function solution(s, t){
+                let answer=0;
+                for(x of s){
+                    if(x===t) answer++;
+                }
+                return answer;
+            }
+            
+            let str="COMPUTERPROGRAMMING";
+            console.log(solution(str, 'R'));
+            */
+
+           /* ///////두번째 방법///////////
+            function solution(s, t){
+                let answer = s.split("").filter(word=>word===t).length;
+                return answer;
+            }
+            
+            let str="COMPUTERPROGRAMMING";
+            console.log(solution(str, 'R'));
+            */
+            function solution(s, t){
+                let answer = s.split(t).length-1
+                return answer;
+            }
+            
+            let str="COMPUTERPROGRAMMING";
+            console.log(solution(str, 'R'));
+        </script>
+    </body>
+</html>
