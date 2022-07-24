@@ -1,0 +1,25 @@
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>출력결과</title>
+    </head>
+    <body>
+        <script>
+            function solution(s){
+                let answer="YES";
+                let changeS=s.toUpperCase();
+                if(changeS.split("").reverse().join("") === changeS){
+                    return answer;    
+                }
+                else return answer="NO";
+                
+            }
+            
+            let str="goooG";
+            let str2='adasdfzz'
+            console.log(solution(str));
+            console.log(solution(str2));
+        </script>
+    </body>
+</html>
+
