@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(m, product) {
+        let answer = 0;
+        let n = product.length;
+        product.sort((a, b) => a[0] + a[1] - (b[0] + b[1])); // sort 이용해서 오름차순
+        for (let i = 0; i < n; i++) {
+          let money = m - (product[i][0] / 2 + product[i][1]); // 할인 받고 남은 예산 = money
+          let cnt = 1; //cnt 는 구매한 사람 수
+          for (let j = 0; j < n; j++) {
+            if (j !== i && product[j][0] + product[j][1] > money) break;
+            if (j !== i && product[j][0] + product[j][1] <= money) {
+              // 할인된 상품은 구매 x  && 남은 예산이 상품 구매가 보다 많아야됨
+              money -= product[j][0] + product[j][1];
+              cnt++;
+            }
+          }
+
+          answer = Math.max(answer, cnt);
+        }
+        return answer;
+      }
+
+      let arr = [
+        [6, 6],
+        [2, 2],
+        [4, 3],
+        [4, 5],
+        [10, 3],
+      ];
+      console.log(solution(28, arr));
+    </script>
+  </body>
+</html>
