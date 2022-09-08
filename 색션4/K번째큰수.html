@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, count, card) {
+        // n => 카드 수
+        // k => k 번째로 큰 수를 출력
+        // card => 각 카드
+        // 1. 랜덤 3장을 뽑아서 나오는 경우의 수 전부다 출력
+        // 2. 중복되는 수 제거
+        // 3. 중복안된 수 중에서 k 번째의 수 를 출력
+        let newarr = [];
+        for (i = 0; i < n; i++) {
+          for (j = 0; j < n; j++) {
+            for (k = 0; k < n; k++) {
+              if (arr[i] !== arr[j]) {
+                if (arr[i] !== arr[k]) {
+                  if (arr[j] !== arr[k]) {
+                    newarr.push(arr[i] + arr[j] + arr[k]);
+                  }
+                }
+              }
+            }
+          }
+        }
+        let newitem = newarr.filter((e, i) => newarr.indexOf(e) === i);
+        let sortitem = newitem.sort((a, b) => b - a);
+        let answer = sortitem[count - 1];
+        return answer;
+      }
+
+      let arr = [13, 15, 34, 23, 45, 65, 33, 11, 26, 42];
+      console.log(solution(10, 3, arr));
+    </script>
+  </body>
+</html>
