@@ -1,0 +1,32 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(m, arr) {
+        let answer = 0;
+        let n = arr.length; // n= 개수
+        // m= 5 :  만들어야되는 수
+        let sum = 0;
+        let leftitem = 0;
+        let rightitem = 0;
+        for (rightitem; rightitem < n; rightitem++) {
+          if (arr[rightitem] < m) answer++;
+          sum += arr[rightitem];
+          if (sum < m) answer++;
+          if (sum >= m) {
+            sum -= arr[leftitem];
+            leftitem++;
+            if (sum <= m) answer++;
+          }
+        }
+        return answer;
+      }
+
+      let a = [1, 3, 1, 2, 3];
+      console.log(solution(5, a));
+    </script>
+  </body>
+</html>
