@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(str1, str2) {
+        let answer = "YES";
+        //1. 해쉬를 이용해서 두 함수를 key , value 값을 저장한다
+        let aH = new Map();
+        let bH = new Map();
+        for (x of str1) {
+          aH.has(x) ? aH.set(x, aH.get(x) + 1) : aH.set(x, 1);
+        }
+        for (y of str2) {
+          bH.has(y) ? bH.set(y, bH.get(y) + 1) : bH.set(y, 1);
+        }
+        //2. 두 함수의 해쉬 key ,value 를 비교한다
+        for (i of str1) {
+          if (aH.get(i) !== bH.get(i)) answer = "NO";
+        }
+
+        //3. key와 value가 모두 일치하면 YES / 일치 x NO
+
+        return answer;
+      }
+
+      let a = "AbaAeCe";
+      let b = "baeeACA";
+      let c = "abaCC";
+      let d = "Caaab";
+      console.log(solution(a, b));
+      console.log(solution(c, d));
+    </script>
+  </body>
+</html>
