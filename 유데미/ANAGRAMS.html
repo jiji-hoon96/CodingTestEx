@@ -7,22 +7,17 @@
     <script>
       function validAnagram(aObject, bObject) {
         let answer = true;
-        let compareA = {};
-        let compareB = {};
-        // 서로 길이가 일치하지않으면 false
+        let aH = new Map();
+        let bH = new Map();
+        for (x of aObject) {
+          aH.has(x) ? aH.set(x, aH.get(x) + 1) : aH.set(x, 1);
+        }
+        for (y of bObject) {
+          bH.has(y) ? bH.set(y, bH.get(y) + 1) : bH.set(y, 1);
+        }
         if (aObject.length !== bObject.length) answer = false;
         for (val of aObject) {
-          compareA[val] = (compareA[val] || 0) + 1;
-        }
-        for (val of bObject) {
-          compareB[val] = (compareB[val] || 0) + 1;
-        }
-        //console.log("a", compareA);
-        //console.log("b", compareB);
-        for (let key in compareA) {
-          // a의 key 값이 b 에 들어있지 않으면 false
-          if (!(key in compareB)) answer = false;
-          if (compareA[key] !== compareB[key]) answer = false;
+          if (aH.get(val) !== bH.get(val)) answer = false;
         }
         return answer;
       }
