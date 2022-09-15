@@ -20,11 +20,11 @@
           counterB[val] = (counterB[val] || 0) + 1;
         }
         for (let key in counterA) {
-          //3. a의 key 를 제곱했을때 b 의 k 에 없으면 false
+          //3. a의 value 를 제곱했을때 b 의 k 에 없으면 false
           if (!(key ** 2 in counterB)) {
             answer = false;
           }
-          //4.
+          //4.a의 key 를 제곱했을때 b랑 일치하지않으면 false
           if (counterA[key ** 2] !== counterB[key]) {
             answer = false;
           }

@@ -1,0 +1,39 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function validAnagram(aObject, bObject) {
+        let answer = true;
+        let compareA = {};
+        let compareB = {};
+        // 서로 길이가 일치하지않으면 false
+        if (aObject.length !== bObject.length) answer = false;
+        for (val of aObject) {
+          compareA[val] = (compareA[val] || 0) + 1;
+        }
+        for (val of bObject) {
+          compareB[val] = (compareB[val] || 0) + 1;
+        }
+        //console.log("a", compareA);
+        //console.log("b", compareB);
+        for (let key in compareA) {
+          // a의 key 값이 b 에 들어있지 않으면 false
+          if (!(key in compareB)) answer = false;
+          if (compareA[key] !== compareB[key]) answer = false;
+        }
+        return answer;
+      }
+      console.log(validAnagram("", ""));
+      console.log(validAnagram("aaz", "zza"));
+      console.log(validAnagram("anagram", "nagaram"));
+      console.log(validAnagram("rat", "car"));
+      console.log(validAnagram("awesome", "awesom"));
+      console.log(validAnagram("amanaplanacanalpanama", "acanalmanplanpamana"));
+      console.log(validAnagram("qwerty", "qeywrt"));
+      console.log(validAnagram("texttwisttime", "timetwisttext"));
+    </script>
+  </body>
+</html>
