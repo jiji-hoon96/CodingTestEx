@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer;
+        let stack = [];
+        //1. s의 배열을 돌면서 x 가 ) 일때
+        //2. (부터 해당 ) 까지 전부다 제거
+
+        for (x of s) {
+          if (x === ")") {
+            //여기서 === 이 아닌 !== 을 해주어야 (까지 지워진다
+            while (stack.pop() !== "(");
+          }
+          //3. )이 나오지 않을때까지는 계속 push 해준다
+          else stack.push(x);
+          answer = stack.join("");
+        }
+        return answer;
+      }
+
+      let str = "(A(BC)D)EF(G(H)(IJ)K)LM(N)";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
