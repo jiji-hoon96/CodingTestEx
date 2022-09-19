@@ -1,0 +1,27 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function countUniqueValues(a) {
+        if (a.length === 0) return 0;
+        let i = 0;
+        // 왼쪽 포인터가 i , 오른쪽 포인터가 j 가 된다
+        for (let j = 1; j < a.length; j++) {
+          if (a[i] !== a[j]) {
+            i++;
+            a[i] = a[j];
+          }
+        }
+        return i + 1;
+      }
+
+      console.log(countUniqueValues([1, 1, 1, 1, 1, 2]));
+      console.log(countUniqueValues([1, 2, 3, 4, 4, 4, 7, 7, 12, 12, 13]));
+      console.log(countUniqueValues([]));
+      console.log(countUniqueValues([-2, -1, -1, 0, 1]));
+    </script>
+  </body>
+</html>
