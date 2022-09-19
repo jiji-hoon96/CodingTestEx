@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function maxSubarraySum(a, b) {
+        // b의 값이 무조건 a의 length보다는 커야됨 (시작조건)
+
+        let max = -Infinity;
+        if (a.length < b) return null;
+        for (let i = 0; i < a.length - b + 1; i++) {
+          //a의 0번째부터 b-1 번 자리까지 더한 값을 sum으로 저장
+          let sum = 0;
+          //a와 b-1에 각각 ++ 해주고
+          //sum 을 해서 그 값이 sum 보다 크면 sum 을 변경
+          //같거나 작으면 넘어감
+          for (let j = 0; j < b; j++) {
+            sum += a[i + j];
+            if (sum > max) max = sum;
+          }
+        }
+        return max;
+      }
+      console.log(maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 2));
+      console.log(maxSubarraySum([1, 2, 5, 2, 8, 1, 5], 4));
+      console.log(maxSubarraySum([4, 2, 1, 6], 1));
+      console.log(maxSubarraySum([4, 2, 1, 6, 2], 4));
+      console.log(maxSubarraySum([], 4));
+    </script>
+  </body>
+</html>
