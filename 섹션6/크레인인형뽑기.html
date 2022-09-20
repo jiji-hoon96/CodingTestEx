@@ -1,0 +1,46 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(board, moves) {
+        let answer = 0;
+        let stack = [];
+        //1. for 문을 돌려서 크레인이 인형을 잡는다
+        moves.forEach((pos) => {
+          for (let i = 0; i < board.length; i++) {
+            //2. board[i][pos-1] !== 0 이면 해당 값을 stack 에 push 한다
+            if (board[i][pos - 1] !== 0) {
+              //3. stack에 값을 넣어주면 해당값은 0 이된다.
+              let previousValue = board[i][pos - 1];
+              board[i][pos - 1] = 0;
+
+              //4. 두개가 연속해서 같으면 pop 해준다
+              if (previousValue === stack[stack.length - 1]) {
+                stack.pop();
+                answer += 2;
+              } else stack.push(previousValue);
+              break;
+            }
+          }
+        });
+
+        console.log(stack);
+        return answer;
+      }
+
+      let a = [
+        [0, 0, 0, 0, 0],
+        [0, 0, 1, 0, 3],
+        [0, 2, 5, 0, 1],
+        [4, 2, 4, 4, 2],
+        [3, 5, 1, 3, 1],
+      ];
+
+      let b = [1, 5, 3, 5, 1, 2, 1, 4];
+      console.log(solution(a, b));
+    </script>
+  </body>
+</html>
