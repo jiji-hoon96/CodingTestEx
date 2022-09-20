@@ -1,0 +1,33 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer = 0;
+        let stack = [];
+        for (let i = 0; i < s.length; i++) {
+          //여는괄호면 push
+          if (s[i] === "(") {
+            stack.push(s[i]);
+          } else {
+            //닫는괄호면 pop
+            stack.pop();
+            //만약 닫는괄호 왼쪽에 여는괄호면 쌓인 스택의 길이를 answer에 push
+            if (s[i - 1] === "(") answer += stack.length;
+            //닫는괄호 왼쪽에 닫는괄호면 answer 에 1만 push
+            else answer += 1;
+          }
+        }
+        console.log(answer);
+      }
+
+      let a = "()(((()())(())()))(())";
+      let b = "(((()(()()))(())()))(()())";
+      console.log(solution(a));
+      console.log(solution(b));
+    </script>
+  </body>
+</html>
