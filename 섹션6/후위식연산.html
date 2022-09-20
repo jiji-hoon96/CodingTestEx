@@ -1,0 +1,38 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(s) {
+        let answer;
+        let stack = [];
+        for (i of s) {
+          //숫자면 stack에 저장
+          if (!isNaN(i)) {
+            stack.push(Number(i));
+          } else {
+            //rt 를 먼저 pop 해야 된다 (뒤에있는거 부터)
+            let rt = stack.pop();
+            let lt = stack.pop();
+            if (i === "+") {
+              stack.push(lt + rt);
+            } else if (i === "-") {
+              stack.push(lt - rt);
+            } else if (i === "*") {
+              stack.push(lt * rt);
+            } else if (i === "/") {
+              stack.push(lt / rt);
+            }
+          }
+        }
+        answer = stack[0];
+        return answer;
+      }
+
+      let str = "352+*9-";
+      console.log(solution(str));
+    </script>
+  </body>
+</html>
