@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function solution(n, k) {
+        let answer;
+        let nArray = Array.from({ length: n }, (v, i) => i + 1);
+        //계속 반복해야함
+        while (nArray.length) {
+          for (let i = 0; i < k; i++) {
+            // nArray배열에 i= 0,1,2 의 값을 잘라서 push
+            nArray.push(nArray.shift());
+          }
+          // 마지막거 삭제
+          nArray.pop();
+
+          // length 하나면 그 값만 넣기
+          if (nArray.length === 1) answer = nArray.shift();
+        }
+
+        return answer;
+      }
+
+      console.log(solution(8, 3));
+    </script>
+  </body>
+</html>
