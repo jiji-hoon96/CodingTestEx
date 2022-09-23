@@ -1,0 +1,30 @@
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>출력결과</title>
+  </head>
+  <body>
+    <script>
+      function maxSubarraySum(a, b) {
+        // b의 개수만큼 연속수열의 최댓값을 구해라
+        // i 는 0 부터 시작하고 i 가 a배열 length까지 도달해야함
+        let maxNum = -Infinity;
+        if (a.length < b) return (maxNum = null);
+        for (let i = 0; i < a.length; i++) {
+          let sum = 0;
+          for (let j = 0; j < b; j++) {
+            sum += a[i + j];
+            if (sum > maxNum) maxNum = sum;
+          }
+        }
+        return maxNum;
+      }
+
+      console.log(maxSubarraySum([100, 200, 300, 400], 2)); // 700
+      console.log(maxSubarraySum([1, 4, 2, 10, 23, 3, 1, 0, 20], 4)); // 39
+      console.log(maxSubarraySum([-3, 4, 0, -2, 6, -1], 2)); // 5
+      console.log(maxSubarraySum([3, -2, 7, -4, 1, -1, 4, -2, 1], 2)); // 5
+      console.log(maxSubarraySum([2, 3], 3)); // null
+    </script>
+  </body>
+</html>
