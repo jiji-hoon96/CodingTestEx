@@ -5,11 +5,11 @@ function solution(arr) {
   for (let i = 0; i < n; i++) {
     sum1 = sum2 = 0;
     for (let j = 0; j < n; j++) {
-      sum1 += arr[i][j];
-      sum2 += arr[j][i];
+      sum1 += arr[i][j]; //행의 덧샘
+      sum2 += arr[j][i]; //열의 덧셈
     }
-    sum3 += arr[i][i];
-    sum4 += arr[i][n - i - 1];
+    sum3 += arr[i][i]; //대각선 오른쪽방향
+    sum4 += arr[i][n - i - 1]; //대각선 왼쪽방향
     answer = Math.max(answer, sum1, sum2, sum3, sum4);
   }
   return answer;
