@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>Coffee Shop</title>
+    <style>
+      /* CSS 스타일링 */
+      body {
+        font-family: Arial, sans-serif;
+        margin: 0;
+        padding: 0;
+      }
+      header {
+        background-color: #333;
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+      h1 {
+        margin: 0;
+      }
+      .menu-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 20px;
+      }
+      .menu {
+        background-color: #ddd;
+        border-radius: 10px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        margin-bottom: 20px;
+        overflow: hidden;
+        width: 300px;
+      }
+      .menu img {
+        display: block;
+        margin: 0 auto;
+        width: 200px;
+        height: 200px;
+      }
+      .menu h2 {
+        margin: 10px;
+        text-align: center;
+      }
+      .menu p {
+        margin: 10px;
+        text-align: center;
+      }
+      .menu input[type="number"] {
+        display: block;
+        margin: 10px auto;
+        width: 50px;
+      }
+      .order-container {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        padding: 20px;
+      }
+      .order {
+        background-color: #ddd;
+        border-radius: 10px;
+        box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.3);
+        margin-bottom: 20px;
+        overflow: hidden;
+        width: 300px;
+      }
+      .order h2 {
+        margin: 10px;
+        text-align: center;
+      }
+      .order p {
+        margin: 10px;
+        text-align: center;
+      }
+      .order button {
+        background-color: #333;
+        border: none;
+        border-radius: 5px;
+        color: white;
+        font-size: 16px;
+        margin: 10px;
+        padding: 10px 20px;
+        transition: all 0.3s ease;
+      }
+      .order button:hover {
+        background-color: #555;
+        cursor: pointer;
+      }
+      footer {
+        background-color: #333;
+        color: white;
+        padding: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>Coffee Shop</h1>
+    </header>
+    <div class="menu-container">
+      <div class="menu">
+        <img src="espresso.jpg" alt="Espresso" />
+        <h2>에스프레소</h2>
+        <p>3000원</p>
+        <input type="number" min="0" placeholder="수량" />
+      </div>
+      <div class="menu">
+        <img src="americano.jpg" alt="Americano" />
+        <h2>아메리카노</h2>
+        <p>4500원</p>
+        <input type="number" min="0" placeholder="수량" />
+      </div>
+      <div class="menu">
+        <img src="latte.jpg" alt="Latte" />
+        <h2>라떼</h2>
+        <p>4600원</p>
+        <input type="number" min="0" placeholder="수량" />
+      </div>
+      <div class="menu">
+        <img src="cappuccino.jpg" alt="Cappuccino" />
+        <h2>카푸치노</h2>
+        <p>5000원</p>
+        <input type="number" min="0" placeholder="수량" />
+      </div>
+      <div class="menu">
+        <img src="tea.jpg" alt="Tea" />
+        <h2>홍차</h2>
+        <p>2000원</p>
+        <input type="number" min="0" placeholder="수량" />
+      </div>
+      <div class="menu">
+        <h2>돌체라떼</h2>
+        <p>10000원</p>
+        <input type="number" min="0" placeholder="수량" />
+      </div>
+    </div>
+    <div id="order-container">
+      <h2>주문내역</h2>
+      <ul id="order-list"></ul>
+      <div id="total-price"></div>
+      <button id="order-button">주문하기</button>
+    </div>
+  </body>
+  <script>
+    // 주문 버튼 클릭 시 이벤트
+    document
+      .getElementById("order-button")
+      .addEventListener("click", function () {
+        // 주문 목록 가져오기
+        var orders = document.querySelectorAll(".menu input[type='number']");
+
+        var orderList = []; // 주문 목록 배열
+        var totalPrice = 0; // 총 주문 가격
+
+        // 각 메뉴별로 주문 수량이 있는지 확인하고, 있다면 주문 목록에 추가하기
+        orders.forEach(function (order) {
+          var quantity = parseInt(order.value);
+          if (quantity > 0) {
+            var menu = order.parentNode;
+            var name = menu.querySelector("h2").innerText;
+            var price = parseInt(menu.querySelector("p").innerText);
+            var orderPrice = quantity * price;
+            orderList.push(quantity + " x " + name + " - " + orderPrice + "원");
+            totalPrice += orderPrice;
+          }
+        });
+
+        // 주문 내역과 총 주문 가격을 화면에 출력하기
+        var orderListElement = document.getElementById("order-list");
+        orderListElement.innerHTML = "";
+        orderList.forEach(function (order) {
+          var li = document.createElement("li");
+          li.innerText = order;
+          orderListElement.appendChild(li);
+        });
+        document.getElementById("total-price").innerText =
+          "총 주문 가격: " + totalPrice + "원";
+      });
+    document
+      .getElementById("order-button")
+      .addEventListener("click", function () {
+        // 주문 목록 가져오기
+        var orders = document.querySelectorAll(".menu input[type='number']");
+
+        var orderList = []; // 주문 목록 배열
+        var totalPrice = 0; // 총 주문 가격
+
+        // 각 메뉴별로...
+        orders.forEach(function (order) {
+          // 수량이 0이 아니면 주문 목록에 추가
+          if (order.value !== "" && parseInt(order.value) > 0) {
+            var menu = order.parentNode;
+            var menuName = menu.querySelector("h2").innerText;
+            var menuPrice = parseInt(
+              menu.querySelector("p").innerText.replace("원", "")
+            );
+            var menuQuantity = parseInt(order.value);
+            var orderItem = {
+              name: menuName,
+              price: menuPrice,
+              quantity: menuQuantity,
+            };
+            orderList.push(orderItem);
+            totalPrice += menuPrice * menuQuantity;
+          }
+        });
+
+        // 주문내역 출력
+        var orderListEl = document.getElementById("order-list");
+        orderListEl.innerHTML = ""; // 이전 주문내역 삭제
+        orderList.forEach(function (order) {
+          var orderItemEl = document.createElement("li");
+          var orderItemNameEl = document.createElement("span");
+          orderItemNameEl.innerText = order.name;
+          var orderItemQuantityEl = document.createElement("span");
+          orderItemQuantityEl.innerText = "x" + order.quantity;
+          var orderItemPriceEl = document.createElement("span");
+          orderItemPriceEl.innerText = order.price * order.quantity + "원";
+          orderItemEl.appendChild(orderItemNameEl);
+          orderItemEl.appendChild(orderItemQuantityEl);
+          orderItemEl.appendChild(orderItemPriceEl);
+          orderListEl.appendChild(orderItemEl);
+        });
+
+        // 총 주문 가격 출력
+        var totalPriceEl = document.getElementById("total-price");
+        totalPriceEl.innerText = "총 가격: " + totalPrice + "원";
+      });
+  </script>
+</html>
